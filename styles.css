@@ -1,0 +1,184 @@
+/* The Box Model Fix */
+/* ------------------------------- */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background-color: #1d1e2c;
+}
+
+/* Generic Font for Website */
+/* ------------------------------- */
+@font-face {
+    font-family: CutiveMono;
+    src: url(fonts/CutiveMono-Regular.ttf);
+}
+
+/* Navigation Bar */
+/* ------------------------------- */
+.navbar {
+    margin-top: 20px;
+    padding-left: 30px;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 18px 50px;
+    margin-right: 15px;
+    border-radius: 10px;
+    color: #1d1e2c;
+    background-color: #d7cdcc;
+    font-family: CutiveMono;
+    font-weight: bold;
+}
+
+/* Home Page Specs */
+/* ------------------------------- */
+.home_description {
+    margin-top: 100px;
+    padding:20px 320px 20px;
+    position: relative;
+    height: 700px;
+    overflow: hidden;
+}
+
+.home_desc_text {
+    margin:0;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    float: left;
+    padding-right: 100px;
+}
+
+.home_desc_text h1 {
+    text-align: center; 
+    color: #ffffff;
+    font-size: 40px;
+    font-family: CutiveMono;
+}
+
+.home_desc_text h2 {
+    line-height: 200%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: CutiveMono;
+    font-weight: lighter;
+}
+
+.home_desc_img {
+    float: left;
+}
+
+#fam_pic {
+    border-radius: 20px;
+    width: 600px;
+    height: 600px;
+}
+
+/* About Me */
+/* -----------------------------*/
+.about_me {
+    padding-top: 20px;
+    padding-bottom: 450px;
+    background-color: #d7cdcc;
+    margin-top: 100px;
+    height: 520px;
+    overflow: hidden;
+}
+
+.about_me p {
+    line-height: 200%;
+    text-align: center;
+    margin-top: 0;
+    font-family: CutiveMono;
+    font-size: 18px;
+    color: #1d1e2c;
+}
+
+.about_me ol {
+    line-height: 200%;
+    text-align: center;
+    margin-top: 0;
+    font-family: CutiveMono;
+    font-size: 18px;
+    color: #1d1e2c;
+}
+
+.about_me h3 {
+    font-family: CutiveMono;
+    color: #1d1e2c;
+    text-align: center;
+    font-size: 50px;
+}
+
+.about_me h4 {
+    margin-top: 0;
+    font-family: CutiveMono;
+    color: #1d1e2c;
+    text-align: center;
+    font-size: 28px;
+}
+
+.family_about, .upbringing_about, .college_about {
+    height: 500px;
+    width: 33%;
+    float: left;
+}
+
+/* Favorite Pages Specs */
+/* -----------------------------*/
+.williams_about {
+    height: 650px;
+    margin-top: 20px;
+    padding: 0px;
+}
+
+.williams_image {
+    float: left;
+    width: 29.5%;
+}
+
+.williams_text {
+    float: left;
+    width: 55.5%;
+}
+
+.williams_text h1 {
+    font-family: CutiveMono;
+    color: #ffffff;
+    font-size: 40px;
+    padding-left: 10%;
+    margin-top: 0px;
+    width:inherit;
+}
+
+.williams_text p {
+    line-height: 200%;
+    font-family: CutiveMono;
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 10%;
+    margin-top: 0px;
+    width:90%;
+}
+
+.williams_text a, .williams_text a:visited {
+    line-height: 200%;
+    font-family: CutiveMono;
+    color: #ffffff;
+    font-size: 20px;
+    padding-left: 10%;
+    margin-top: 0px;
+    width:90%;
+}
+.williams_image img {
+    height: 800px;
+    border-radius: 0px 0px 80px 0px;
+}
