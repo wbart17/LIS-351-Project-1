@@ -16,6 +16,13 @@ color: #BF8768;
 text-align: center;
 }
 
+header1 {
+font-size: 22.25em;
+font-family: 'IBM Plex Sans', sans-serif;
+color: #BF8768;
+text-align: center;
+}
+
 main {
 font-size: 0.85em;
 font-family: 'IBM Plex Serif', serif;
