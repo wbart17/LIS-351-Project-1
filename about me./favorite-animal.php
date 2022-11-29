@@ -37,7 +37,7 @@
 
 // To display results of all questions, Grab the user id from the POST data sent to us from previous page i.e. last form page edited e.g. q-royston.php  
 
-$user_id = $_POST["q-royston.php"];
+$user_id = $_POST["user_id"];
 
 // Store the answer to the previous question, if applicable
 include "store-answer.php";
