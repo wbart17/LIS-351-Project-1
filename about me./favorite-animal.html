@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Perceptions of the Harvard Implicit Bias test | LIS 500 Assignment 4</title>
-    <link rel="stylesheet" href="../barthell_styles.css">
+    <link rel="stylesheet" type="text/css" href="css-roystonqstyle.css">
     
     <!-- Import the Google Fonts: -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -11,49 +11,102 @@
 	
 </head>
 
+<body>
+    <h1> Results for our Shared Survey</h1>
+    
+    <p>Below you will the results for all questions displayed in their Likert numerals and an average of all current test takers. 
+    <br>Since no personal IP address data is taken in this form, if you take again the average will shift. <br>This is nothing like a statistically accurate survey, but it is a good model for your final projects.</p>
+    
+    <h2> As a reminder, here's your Likert scale:</h2>
+    <ul>
+        <li> 5 - I Strongly Agree </li>
+        <li> 4 - I Agree </li>
+        <li> 3 - Neutral </li>
+        <li> 2 - I Disagree </li>
+        <li> 1 - I Strongly Disagree </li>        
+</ul>
+</body>
 <?php
 
 // Created by: Reginold Royston and Mariah Knowles
-// Based on: index.php
-// Last Modified on: Oct 25, 2021
+// Based on:
+// Last Modified on: Oct 28, 2021
 // Last Modified by: Reginold Royston
+// This is a results page for database queries using PHP forms //
 
-// Grab the user id from the POST data sent to us from the previous page
-$user_id = $_POST["user_id"];
+
+// To display results of all questions, Grab the user id from the POST data sent to us from previous page i.e. last form page edited e.g. q-royston.php  
+
+$user_id = $_POST["q-royston.php"];
 
 // Store the answer to the previous question, if applicable
 include "store-answer.php";
 
-// Specify the question text to be displayed on this page
-$question_text = "I have avoided taking courses whose central theme is about racism.";
+// Time to retreive from the database all data we've collected for this visitor throughout the survey
 
-// Use the question text and the user id to create a form for this question that will take us to the next question OR the results page, whichever should come next:
+// Database settings
+// (copy these as necessary for your own projects)
+$mysql_server="localhost";
+$mysql_db="raroyst1_raroystonorgmain";
+$mysql_port="3306";
+$mysql_user="raroyst1_cfbd_cg";  
+$mysql_password="W!SCsin2018";
+
+// Connect to the database
+$conn = new mysqli($mysql_server, $mysql_user, $mysql_password, $mysql_db);
+
+// Whoops. This shouldn't happen, but if we can't connect to the database "blow up" and stop here
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Prepare our first query: get all the results for this particular user
+$query = $conn->prepare("SELECT question, answer FROM sharedsurvey WHERE user_id = ? ORDER BY question");
+$query->bind_param("i", $user_id);
+
+// Run our query to get the results from the database
+$query->execute();
+$results = $query->get_result();
+
+// Loop through and display the results
+echo '<p><i><u>Your results:</u> </i></p>';
+while ($result = $results->fetch_assoc()){
+  echo '<p><b>'.$result["question"].':</b> '.$result["answer"].'</p>';
+}
+
+// Close the query
+$query->close();
+
+// Prepare our second query: get all the average results for all questions
+$query = $conn->prepare("SELECT question, avg(answer) as answer FROM sharedsurvey GROUP BY question ORDER BY question");
+
+// Run our query to get the results from the database
+$query->execute();
+$results = $query->get_result();
+
+// Loop through and display the results
+echo '<p><i><u>Average results:</u></i></p>';
+while ($result = $results->fetch_assoc()){
+  echo '<p><b>'.$result["question"].':</b> '.$result["answer"].'</p>';
+}
+
+// Close the query
+$query->close();
+
+// Close the connection
+$conn->close();
 
 ?>
+<body>
+<h2>This results page shows averages. Here are some important questions to ask now: </h2>
 
-<form method="post" action="results.php">
-    <header1>Universities should implement non-binary bathrooms across their campuses.</header1> 
-    <p><input type="radio" name="answer" value="5" /> I Strongly Agree</p>
-    <p><input type="radio" name="answer" value="4" /> I Agree</p>
-    <p><input type="radio" name="answer" value="3" /> Neutral</p>
-    <p><input type="radio" name="answer" value="2" /> I Disagree</p>
-    <p><input type="radio" name="answer" value="1" /> I Strongly Disagree</p>
-    <p><input type="submit" value="Continue" /></p>
-</form>
-	</main>
-</div>
-<footer>
-    
-<!-- Text and design from Ben Pettis Spring 2021 -->     
-	<p>
-	When you participate in this survey, information about your answers is submitted to the website and stored in a database. Your responses to individual questions are associated with one another via a random id that was generated when you visited the first survey page. This id is not generated based on any of your personal information and to our knowledge there is no way to associate this random id with you or any other of yoru personal information.
-	</p>
-	<p>
-	Once you leave the survey, no further information is collected by this website. While we appreciate everyone completing all of the survey questions, you are welcome to leave at any time. Because your user id is randomly generated every time that you visit the survey starting page, there is no way to return to your in-progress responses at a later time.
-	</p>
-	<br />
-	&copy; <?php echo date('Y');?> <br />
-	All Rights Reserved
-</footer>
+<ul>
+    <li>What does this data mean? </li> 
+    <li>What does that tell you? </li> 
+    <li>Is this the best way to display results? </li> 
+    <li>How can we display this information more usefully? </li>
+</ul>
+    <h3>We'll tackle this in Assignment # 5 </h3>  
+
+</p>
 </body>
-</html>
